@@ -1,3 +1,7 @@
+package com.cisco.wessm;
+
+import com.cisco.wessm.GNode;
+import com.cisco.wessm.MyGNode;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,6 +32,8 @@ public class GNodeTest {
         gNodeC = new MyGNode("C", new GNode[] {gNodeG, gNodeH, gNodeI});
         gNodeD = new MyGNode("D", new GNode[] {gNodeJ});
         gNodeA = new MyGNode("A", new GNode[] {gNodeB, gNodeC, gNodeD});
+
+
     }
 
     @Test
@@ -37,7 +43,7 @@ public class GNodeTest {
 
     @Test
     public void testWalkGraph1() {
-        walkGraph(gNodeA);
+        GNodeFunctions.walkGraph(gNodeA);
     }
 
 }
