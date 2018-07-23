@@ -5,6 +5,8 @@ import com.cisco.wessm.MyGNode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class GNodeTest {
@@ -38,12 +40,66 @@ public class GNodeTest {
 
     @Test
     public void testGetChildren1() {
-        assertEquals(null, gNodeA.getChildren());
+        GNode[] expected = {gNodeB, gNodeC, gNodeD};
+        assertEquals(expected, gNodeA.getChildren());
     }
 
     @Test
     public void testWalkGraph1() {
-        GNodeFunctions.walkGraph(gNodeA);
+        ArrayList<GNode> actual = GNodeFunctions.walkGraph(gNodeA);
+        ArrayList<GNode> expected = new ArrayList<>();
+        expected.add(gNodeA);
+        expected.add(gNodeB);
+        expected.add(gNodeE);
+        expected.add(gNodeF);
+        expected.add(gNodeC);
+        expected.add(gNodeG);
+        expected.add(gNodeH);
+        expected.add(gNodeI);
+        expected.add(gNodeD);
+        expected.add(gNodeJ);
+        assertEquals(expected, actual);
     }
 
+    @Test
+    public void testPaths1() {
+        ArrayList<ArrayList<GNode>> actual = GNodeFunctions.paths(gNodeA);
+        ArrayList<ArrayList<GNode>> expected = new ArrayList<>();
+
+        ArrayList<GNode> path1 = new ArrayList<>();
+        path1.add(gNodeA);
+
+        ArrayList<GNode> path2 = new ArrayList<>(path1);
+        ArrayList<GNode> path3 = new ArrayList<>(path1);
+        ArrayList<GNode> path4 = new ArrayList<>(path1);
+        ArrayList<GNode> path5 = new ArrayList<>(path1);
+        ArrayList<GNode> path6 = new ArrayList<>(path1);
+
+        path1.add(gNodeB);
+        path1.add(gNodeE);
+
+        path2.add(gNodeB);
+        path2.add(gNodeF);
+
+        path3.add(gNodeC);
+        path3.add(gNodeG);
+
+        path4.add(gNodeC);
+        path4.add(gNodeH);
+
+        path5.add(gNodeC);
+        path5.add(gNodeI);
+
+        path6.add(gNodeD);
+        path6.add(gNodeJ);
+
+        expected.add(path1);
+        expected.add(path2);
+        expected.add(path3);
+        expected.add(path4);
+        expected.add(path5);
+        expected.add(path6);
+
+        assertEquals(expected, actual);
+    }
 }
