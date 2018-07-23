@@ -2,3 +2,6 @@
 *.iml
 *.idea/
 *.class
+*__pycache/*
+*.pyc*
+*.pytest_cache/*
