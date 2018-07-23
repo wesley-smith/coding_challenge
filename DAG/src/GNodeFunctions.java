@@ -7,7 +7,7 @@ public class GNodeFunctions {
         allNodes.add(gNode);
         GNode[] children = gNode.getChildren();
         if (children.length == 0) {
-            // Reached a leaf, no more children
+            // Reached a leaf, no more childNodes
             return allNodes;
         }
 
@@ -30,7 +30,7 @@ public class GNodeFunctions {
         GNode[] children = gNode.getChildren();
 
         if (children.length == 0) {
-            // Reached a leaf, no more children
+            // Reached a leaf, no more childNodes
             allPaths.add(path);
             return allPaths;
         }
@@ -42,7 +42,7 @@ public class GNodeFunctions {
                 allPaths.add(childPath);
             }
         }
-        
+
         return allPaths;
     }
 }
