@@ -1,7 +1,5 @@
 package com.cisco.wessm;
 
-import com.cisco.wessm.GNode;
-import com.cisco.wessm.MyGNode;
 import org.junit.Before;
 import org.junit.Test;
 
