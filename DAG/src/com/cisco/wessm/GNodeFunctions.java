@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GNodeFunctions {
 
     public static ArrayList walkGraph(GNode gNode) {
-        ArrayList allNodes = new ArrayList();
+        ArrayList<GNode> allNodes = new ArrayList<>();
         allNodes.add(gNode);
         GNode[] children = gNode.getChildren();
         if (children.length == 0) {
@@ -13,12 +13,13 @@ public class GNodeFunctions {
             return allNodes;
         }
 
-        // TODO - this will break if two nodes share a child, there will be duplicates
         for (GNode childNode : children) {
-            try {
-                allNodes.addAll(walkGraph(childNode));
-            } catch (NullPointerException e) {
-                System.err.println("NullPointerException caught adding new nodes: " + e.getMessage());
+            ArrayList<GNode> childNodeGraph = walkGraph(childNode);
+            for (GNode node : childNodeGraph) {
+                if (! allNodes.contains(node)) {
+                    // Only add nodes that aren't present already
+                    allNodes.add(node);
+                }
             }
         }
 
