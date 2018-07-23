@@ -22,4 +22,27 @@ public class GNodeFunctions {
 
         return allNodes;
     }
+
+    public ArrayList paths(GNode gNode) {
+        ArrayList<ArrayList<GNode>> allPaths = new ArrayList<>();
+        ArrayList<GNode> path = new ArrayList<>();
+        path.add(gNode);
+        GNode[] children = gNode.getChildren();
+
+        if (children.length == 0) {
+            // Reached a leaf, no more children
+            allPaths.add(path);
+            return allPaths;
+        }
+
+        for (GNode childNode : children) {
+            ArrayList<ArrayList<GNode>> childPaths = paths(childNode);
+            for (ArrayList<GNode> childPath : childPaths) {
+                childPath.add(0, gNode);
+                allPaths.add(childPath);
+            }
+        }
+        
+        return allPaths;
+    }
 }
