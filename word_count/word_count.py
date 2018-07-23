@@ -12,13 +12,18 @@ from collections import defaultdict
 from pprint import pprint
 import re
 
-filename = 'testfile.txt'
-word_counts = defaultdict(int)
 
-with open(filename, 'r', errors='ignore') as file:
-    for line in file:
-        for match in re.finditer(r'\b(\w+?)\b', line):
-            word = match.group(1)
-            word_counts[word] += 1
+def word_count(filename):
+    word_counts = defaultdict(int)
 
-pprint(dict(word_counts))
+    with open(filename, 'r', errors='ignore') as file:
+        for line in file:
+            for match in re.finditer(r'\b(\w+?)\b', line):
+                word = match.group(1)
+                word_counts[word] += 1
+
+    return dict(word_counts)
+
+
+if __name__ == '__main__':
+    pprint(word_count('testfile.txt'))
