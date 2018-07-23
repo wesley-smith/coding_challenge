@@ -1,16 +1,15 @@
-import java.util.ArrayList;
-
 public class MyGNode implements GNode {
-    public String nodeName;
-    public ArrayList<GNode> children;
+    private String nodeName;
+    private GNode[] childNodes;
 
     public MyGNode(String name) {
         nodeName = name;
-        children = new ArrayList<>();
+        childNodes = new GNode[0];
     }
 
-    public void addChild(GNode childNode) {
-        children.add(childNode);
+    public MyGNode(String name, GNode[] children) {
+        nodeName = name;
+        childNodes = children;
     }
 
     public String getName() {
@@ -18,7 +17,6 @@ public class MyGNode implements GNode {
     };
 
     public GNode[] getChildren() {
-        GNode[] childrenArray = new GNode[children.size()];
-        return children.toArray(childrenArray);
+        return childNodes;
     };
 }
